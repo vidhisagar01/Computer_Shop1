@@ -122,21 +122,35 @@
 </footer>
 
 <!-- 🔽 Tidio Chatbot Script -->
-    <script>
-  function tidioReset() {
-    if (window.tidioChatApi) {
-      window.tidioChatApi.reset();
-    } else {
-      setTimeout(tidioReset, 500);
+ <script>
+  // Remove Tidio cookies
+  document.cookie.split(";").forEach(function(c) {
+    if (c.trim().startsWith("tidio")) {
+      document.cookie = c.replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    }
+  });
+
+  // Clear localStorage keys related to Tidio
+  for (let key in localStorage) {
+    if (key.toLowerCase().includes("tidio")) {
+      localStorage.removeItem(key);
     }
   }
-  tidioReset();
+
+  // Clear sessionStorage too
+  for (let key in sessionStorage) {
+    if (key.toLowerCase().includes("tidio")) {
+      sessionStorage.removeItem(key);
+    }
+  }
 </script>
 
+<!-- Tidio Script -->
 <script src="//code.tidio.co/hummmiub84mo6ic5msf8rejyemoujxir.js" async></script>
 
 </body>
 </html>
+
 
 
 
