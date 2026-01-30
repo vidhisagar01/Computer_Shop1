@@ -123,14 +123,20 @@
 
 <!-- 🔽 Tidio Chatbot Script -->
     <script>
-  window.tidioChatApi = window.tidioChatApi || {};
-  window.tidioChatApi.on = window.tidioChatApi.on || function(){};
-  window.tidioChatApi.reset = function(){};
+  function tidioReset() {
+    if (window.tidioChatApi) {
+      window.tidioChatApi.reset();
+    } else {
+      setTimeout(tidioReset, 500);
+    }
+  }
+  tidioReset();
 </script>
 
 <script src="//code.tidio.co/hummmiub84mo6ic5msf8rejyemoujxir.js" async></script>
 
 </body>
 </html>
+
 
 
